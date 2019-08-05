@@ -1,6 +1,7 @@
 
 package com.ahmedabdelmajeedkhozam.bonneappetit.view.category;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.ahmedabdelmajeedkhozam.bonneappetit.R;
 import com.ahmedabdelmajeedkhozam.bonneappetit.Utils;
 import com.ahmedabdelmajeedkhozam.bonneappetit.adapter.RecyclerViewMealByCategory;
 import com.ahmedabdelmajeedkhozam.bonneappetit.model.Meals;
+import com.ahmedabdelmajeedkhozam.bonneappetit.view.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,6 +29,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.ahmedabdelmajeedkhozam.bonneappetit.view.home.HomeActivity.EXTRA_DETAIL;
 
 public class CategoryFragment extends Fragment implements CategoryView {
 
@@ -92,7 +96,10 @@ public class CategoryFragment extends Fragment implements CategoryView {
         adapter.notifyDataSetChanged();
         
         adapter.setOnItemClickListener((view, position) -> {
-            //TODO #8.2 make an intent to DetailActivity (get the name of the meal from the edit text view, then send the name of the meal to DetailActivity)
+            TextView mealName=view.findViewById(R.id.mealName);
+            Intent intent=new Intent(getActivity(), DetailActivity.class);
+            intent.putExtra(EXTRA_DETAIL,mealName.getText().toString());
+            startActivity(intent);
         });
     }
 

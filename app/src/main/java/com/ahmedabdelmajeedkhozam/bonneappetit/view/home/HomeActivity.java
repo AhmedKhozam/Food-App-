@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahmedabdelmajeedkhozam.bonneappetit.R;
@@ -17,6 +18,7 @@ import com.ahmedabdelmajeedkhozam.bonneappetit.adapter.ViewPagerHeaderAdapter;
 import com.ahmedabdelmajeedkhozam.bonneappetit.model.Categories;
 import com.ahmedabdelmajeedkhozam.bonneappetit.model.Meals;
 import com.ahmedabdelmajeedkhozam.bonneappetit.view.category.CategoryActivity;
+import com.ahmedabdelmajeedkhozam.bonneappetit.view.detail.DetailActivity;
 
 
 import java.io.Serializable;
@@ -66,8 +68,11 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         viewPagerMeal.setPadding(20, 0, 150, 0);
         headerAdapter.notifyDataSetChanged();
 
-        headerAdapter.setOnItemClickListener((v, position) -> {
-            //TODO #8.1 make an intent to DetailActivity (get the name of the meal from the edit text view, then send the name of the meal to DetailActivity)
+        headerAdapter.setOnItemClickListener((view, position) -> {
+            TextView mealName=view.findViewById(R.id.mealName);
+            Intent intent=new Intent(getApplicationContext(), DetailActivity.class);
+            intent.putExtra(EXTRA_DETAIL,mealName.getText().toString());
+            startActivity(intent);
         });
     }
 

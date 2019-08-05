@@ -40,15 +40,16 @@ public class CategoryActivity extends AppCompatActivity {
         
     }
 
+
+    /*
+    * This method to get the data from corresponding intent
+    * */
     private void initIntent() {
         Intent intent = getIntent();
-        List<Categories.Category> categories =
-                (List<Categories.Category>) intent.getSerializableExtra(HomeActivity.EXTRA_CATEGORY);
+        List<Categories.Category> categories = (List<Categories.Category>) intent.getSerializableExtra(HomeActivity.EXTRA_CATEGORY);
         int position = intent.getIntExtra(HomeActivity.EXTRA_POSITION, 0);
         
-        ViewPagerCategoryAdapter adapter = new ViewPagerCategoryAdapter(
-                getSupportFragmentManager(),
-                categories);
+        ViewPagerCategoryAdapter adapter = new ViewPagerCategoryAdapter(getSupportFragmentManager(),categories);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(position, true);
